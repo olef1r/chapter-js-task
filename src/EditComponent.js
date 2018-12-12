@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { browserHistory } from 'react-router-dom'
 import axios from 'axios';
 
 export default class EditComponent extends Component {
@@ -63,8 +64,8 @@ export default class EditComponent extends Component {
                 dob: '',
                 location: ''
             });
-    
-            window.location.reload();  
+            this.props.history.push("/") 
+            window.location.reload()
             }
         } 
 
@@ -76,11 +77,12 @@ export default class EditComponent extends Component {
             let location = this.state.location;
             let errors = '';
             let formIsValid = true;
+            let regExp = /([0-2]\d|3[01])\.(0\d|1[012])\.(\d{4})/;
         
-            if (!first_name || !last_name || !dob || !location) {
+            if (!first_name || !last_name || !location || !regExp.test(dob)) {
                 formIsValid = false;
-                errors = "*Please enter";
-            }
+                errors = "*Please enter valid value";
+            } 
             this.setState({
                 errors: errors
                 });

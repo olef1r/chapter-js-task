@@ -96,7 +96,7 @@ export default class CreateComponent extends Component {
             <form onSubmit={this.onSubmit}>
                 <div className="form-group">
                     <label>First Name:  </label>
-                    <input type="text" value={this.state.first_name}  className="form-control" onChange={this.onChangeFirstName}/>
+                    <input type="text" value={this.state.first_name}  className="form-control" required="required" onChange={this.onChangeFirstName}/>
                     <div className="errorMsg">{this.state.errors}</div>
                 </div>
                 <div className="form-group">
