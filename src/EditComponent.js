@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { browserHistory } from 'react-router-dom'
 import axios from 'axios';
 
 export default class EditComponent extends Component {
@@ -64,6 +63,7 @@ export default class EditComponent extends Component {
                 dob: '',
                 location: ''
             });
+
             this.props.history.push("/") 
             window.location.reload()
             }
@@ -84,14 +84,14 @@ export default class EditComponent extends Component {
                 errors = "*Please enter valid value";
             } 
             this.setState({
-                errors: errors
+                    errors: errors
                 });
             return formIsValid;
         }  
 
     render() {
         return (
-            <div style={{marginTop: 50}}>
+            <div style={{ width: "300px" }}>
             <h2>Edit User</h2>
             <form onSubmit={this.onSubmit}>
                     <div className="form-group">
@@ -114,10 +114,8 @@ export default class EditComponent extends Component {
                     <input type="text" value={this.state.location} className="form-control" onChange={this.onChangeLocation}/>
                     <div className="errorMsg">{this.state.errors}</div>
                 </div>
-                <div className="form-group">
-               
-                     <input type="submit" value="Edit" className="btn btn-primary"/> 
-                
+                <div className="form-group">               
+                     <input type="submit" value="Edit" className="btn btn-primary"/>                 
                 </div>
             </form>
         </div>

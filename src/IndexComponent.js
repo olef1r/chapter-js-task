@@ -34,12 +34,12 @@ export default class IndexComponent extends Component {
       let count = 0;
       let arr = this.state.users.filter(e => {
         let reg = /ne kiev/i;
-        return reg.test(e.location) == false;
+        return reg.test(e.location) === false;
       });
 
       arr.map(e => {
         let reg = /kiev/i;
-        if (reg.test(e.location) == true) count++;
+        if (reg.test(e.location) === true) count++;
       });
       return count;
     }
@@ -66,15 +66,15 @@ export default class IndexComponent extends Component {
       });
       let max = _.max(strLen);
       this.state.users.forEach(e => {
-        if ((e.first_name + e.last_name).length == max) arr.push(`${e.first_name} ${e.last_name}  `)
+        if ((e.first_name + e.last_name).length === max) arr.push(`${e.first_name} ${e.last_name}  `)
       });
       return arr;
     }
 
     render() {
-      console.log(_.max([4,5,6,7,]))
       return (
-        <div className="container">
+        <div className="container" style={{marginTop: 50}}>
+        <h2>Table</h2>
           <table className="table table-striped">
             <thead>
               <tr>
