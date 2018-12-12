@@ -76,11 +76,12 @@ export default class CreateComponent extends Component {
         let location = this.state.location;
         let errors = '';
         let formIsValid = true;
+        let regExp = /([0-2]\d|3[01])\.(0\d|1[012])\.(\d{4})/;
     
-        if (!first_name || !last_name || !dob || !location) {
+        if (!first_name || !last_name || !location || !regExp.test(dob)) {
             formIsValid = false;
-            errors = "*Please enter";
-        }
+            errors = "*Please enter valid value";
+        } 
         this.setState({
             errors: errors
             });
@@ -104,7 +105,7 @@ export default class CreateComponent extends Component {
                     <div className="errorMsg">{this.state.errors}</div>
                 </div>
                 <div className="form-group">
-                    <label>Date of birth: </label>
+                    <label>Date of birth (DD.MM.YYYY): </label>
                     <input type="text" value={this.state.dob} className="form-control" onChange={this.onChangeDob} />
                     <div className="errorMsg">{this.state.errors}</div>
                 </div>

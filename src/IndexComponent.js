@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import moment from 'moment'
+import moment from 'moment';
+import _ from 'lodash'
 
 import TableRow from './TableRow';
 import CreateComponent from './CreateComponent';
@@ -58,15 +59,20 @@ export default class IndexComponent extends Component {
       return sum;
     }
 
-    // longestString() {
-    //   let num = 0;
-    //   this.state.users.map(e => {
-    //     console.log(_.max((e.first_name + e.last_name).length));
-
-    //   });
-    // }
+    longestString() {
+      let arr = [];
+      let strLen = this.state.users.map(e => {
+        return (e.first_name + e.last_name).length;
+      });
+      let max = _.max(strLen);
+      this.state.users.forEach(e => {
+        if ((e.first_name + e.last_name).length == max) arr.push(`${e.first_name} ${e.last_name}  `)
+      });
+      return arr;
+    }
 
     render() {
+      console.log(_.max([4,5,6,7,]))
       return (
         <div className="container">
           <table className="table table-striped">
@@ -87,7 +93,8 @@ export default class IndexComponent extends Component {
             <dl>
               <dt>Number of users from 'Kiev' or 'kiev': {this.countUsersFromKiev()}</dt>
               <dt>Sum of three olders users: {this.sumOfAges()}</dt>
-           
+              <dt>Longest string of first name + last name: {this.longestString()}</dt>
+
             </dl>
           </div>
           <CreateComponent />
